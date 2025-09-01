@@ -121,12 +121,6 @@ Please ensure you have a local Python environment, with Python version 3.10 or h
 
     
 
-**🎉  You can now hold the Option key to start speech input!**
-
-
-
-![image-20250111140954085](https://img.erlich.fun/personal-blog/uPic/image-20250111140954085.png)
-
 ## Tips
 
 This program needs to keep running in the background. It's best to run it in a terminal window or tab that you won't accidentally close.
