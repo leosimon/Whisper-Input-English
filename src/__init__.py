@@ -1,12 +1,12 @@
 """
-语音助手
-一个支持实时语音转录和翻译的工具
+Voice Assistant
+A tool that supports real-time speech transcription and translation
 
-快捷键：
-- 按住 Option 键：实时语音转录（保持原文）
-- 按住 Shift + Option 键：实时语音翻译（翻译成英文）
+Shortcuts:
+- Hold Option key: Real-time speech transcription (keep original text)
+- Hold Shift + Option key: Real-time speech translation (translate to English)
 
-使用方法：
-1. 转录模式：按住 Option 键说话，松开自动转录
-2. 翻译模式：按住 Shift + Option 键说话，松开自动翻译成英文
+Usage:
+1. Transcription mode: Hold Option key and speak, release to auto-transcribe
+2. Translation mode: Hold Shift + Option key and speak, release to auto-translate to English
 """ 

@@ -35,19 +35,19 @@ def timeout_decorator(seconds):
                 if error[0] is not None:
                     raise error[0]
                 return result[0]
-            raise TimeoutError(f"操作超时 ({seconds}秒)")
+            raise TimeoutError(f"Operation timeout ({seconds} seconds)")
 
         return wrapper
     return decorator
 
 class SenseVoiceSmallProcessor:
-    # 类级别的配置参数
-    DEFAULT_TIMEOUT = 20  # API 超时时间（秒）
+    # Class-level configuration parameters
+    DEFAULT_TIMEOUT = 20  # API timeout (seconds)
     DEFAULT_MODEL = "FunAudioLLM/SenseVoiceSmall"
     
     def __init__(self):
         api_key = os.getenv("SILICONFLOW_API_KEY")
-        assert api_key, "未设置 SILICONFLOW_API_KEY 环境变量"
+        assert api_key, "SILICONFLOW_API_KEY environment variable not set"
         
         self.convert_to_simplified = os.getenv("CONVERT_TO_SIMPLIFIED", "false").lower() == "true"
         # self.cc = OpenCC('t2s') if self.convert_to_simplified else None
@@ -58,14 +58,14 @@ class SenseVoiceSmallProcessor:
         self.translate_processor = TranslateProcessor()
 
     def _convert_traditional_to_simplified(self, text):
-        """将繁体中文转换为简体中文"""
+        """Convert Traditional Chinese to Simplified Chinese"""
         if not self.convert_to_simplified or not text:
             return text
         return self.cc.convert(text)
 
     @timeout_decorator(10)
     def _call_api(self, audio_data):
-        """调用硅流 API"""
+        """Call SiliconFlow API"""
         transcription_url = "https://api.siliconflow.cn/v1/audio/transcriptions"
         
         files = {
@@ -80,49 +80,49 @@ class SenseVoiceSmallProcessor:
         with httpx.Client() as client:
             response = client.post(transcription_url, files=files, headers=headers)
             response.raise_for_status()
-            return response.json().get('text', '获取失败')
+            return response.json().get('text', 'Failed to get result')
 
 
     def process_audio(self, audio_buffer, mode="transcriptions", prompt=""):
-        """处理音频（转录或翻译）
+        """Process audio (transcription or translation)
         
         Args:
-            audio_buffer: 音频数据缓冲
-            mode: 'transcriptions' 或 'translations'，决定是转录还是翻译
+            audio_buffer: Audio data buffer
+            mode: 'transcriptions' or 'translations', determines whether to transcribe or translate
         
         Returns:
-            tuple: (结果文本, 错误信息)
-            - 如果成功，错误信息为 None
-            - 如果失败，结果文本为 None
+            tuple: (result text, error message)
+            - If successful, error message is None
+            - If failed, result text is None
         """
         try:
             start_time = time.time()
             
-            logger.info(f"正在调用 硅基流动 API... (模式: {mode})")
+            logger.info(f"Calling SiliconFlow API... (mode: {mode})")
             result = self._call_api(audio_buffer)
 
-            logger.info(f"API 调用成功 ({mode}), 耗时: {time.time() - start_time:.1f}秒")
+            logger.info(f"API call successful ({mode}), time taken: {time.time() - start_time:.1f} seconds")
             # result = self._convert_traditional_to_simplified(result)
             if mode == "translations":
                 result = self.translate_processor.translate(result)
-            logger.info(f"识别结果: {result}")
+            logger.info(f"Recognition result: {result}")
             
             # if self.add_symbol:
             #     result = self.symbol.add_symbol(result)
-            #     logger.info(f"添加标点符号: {result}")
+            #     logger.info(f"Added punctuation symbols: {result}")
             # if self.optimize_result:
             #     result = self.symbol.optimize_result(result)
-            #     logger.info(f"优化结果: {result}")
+            #     logger.info(f"Optimized result: {result}")
 
             return result, None
 
         except TimeoutError:
-            error_msg = f"❌ API 请求超时 ({self.timeout_seconds}秒)"
+            error_msg = f"❌ API request timeout ({self.timeout_seconds} seconds)"
             logger.error(error_msg)
             return None, error_msg
         except Exception as e:
             error_msg = f"❌ {str(e)}"
-            logger.error(f"音频处理错误: {str(e)}", exc_info=True)
+            logger.error(f"Audio processing error: {str(e)}", exc_info=True)
             return None, error_msg
         finally:
-            audio_buffer.close()  # 显式关闭字节流
+            audio_buffer.close()  # Explicitly close byte stream

@@ -2,6 +2,7 @@
 
 ## Prerequisites
 Install Python 3.1x for Mac first
+python3 --version
 
 ## Installation Steps
 
