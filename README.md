@@ -1,8 +1,10 @@
-# Whisper Input
+# Whisper Input (English Version)
 
-Whisper Input is a simple Python tool inspired by [FeiTTT](https://web.okjike.com/u/DB98BE7A-9DBB-4730-B6B9-2DC883B986B1). Hold the Option key to start recording and release it to stop. It uses Groq's `Whisper Large V3 Turbo` model for transcription. Thanks to Groq's speed, most speech inputs return within 1–2 seconds, and Whisper provides excellent transcription quality.
+> **English localization** of [Whisper Input](https://github.com/ErlichLiu/Whisper-Input) by [ErlichLiu](https://github.com/ErlichLiu)
+> 
+> Original project licensed under [MIT License](LICENSE)
 
-- 🎉🎉A more user-friendly speech input app, [WhisperKeyBoard](https://whisperkeyboard.app/), is now available. I highly recommend using it directly. The focus of Whisper Input will continue to shift back to Voice + Agents.
+Whisper Input is a simple Python tool inspired by [FeiTTT](https://web.okjike.com/u/DB98BE7A-9DBB-4730-B6B9-2DC883B986B1)...
 
 ## Features
 
