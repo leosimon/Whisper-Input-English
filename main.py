@@ -13,16 +13,16 @@ from src.transcription.senseVoiceSmall import SenseVoiceSmallProcessor
 
 
 def check_microphone_permissions():
-    """检查麦克风权限并提供指导"""
-    logger.warning("\n=== macOS 麦克风权限检查 ===")
-    logger.warning("此应用需要麦克风权限才能进行录音。")
-    logger.warning("\n请按照以下步骤授予权限：")
-    logger.warning("1. 打开 系统偏好设置")
-    logger.warning("2. 点击 隐私与安全性")
-    logger.warning("3. 点击左侧的 麦克风")
-    logger.warning("4. 点击右下角的锁图标并输入密码")
-    logger.warning("5. 在右侧列表中找到 Terminal（或者您使用的终端应用）并勾选")
-    logger.warning("\n授权后，请重新运行此程序。")
+    """Check microphone permissions and provide guidance"""
+    logger.warning("\n=== macOS Microphone Permission Check ===")
+    logger.warning("This application requires microphone access to record audio.")
+    logger.warning("\nPlease follow these steps to grant permission:")
+    logger.warning("1. Open System Preferences")
+    logger.warning("2. Click Privacy & Security")
+    logger.warning("3. Click Microphone on the left")
+    logger.warning("4. Click the lock icon at the bottom right and enter your password")
+    logger.warning("5. In the list on the right, find Terminal (or your terminal app) and check it")
+    logger.warning("\nAfter granting permission, please rerun this program.")
     logger.warning("===============================\n")
 
 class VoiceAssistant:
@@ -38,14 +38,14 @@ class VoiceAssistant:
         )
     
     def start_transcription_recording(self):
-        """开始录音（转录模式）"""
+        """Start recording (transcription mode)"""
         self.audio_recorder.start_recording()
     
     def stop_transcription_recording(self):
-        """停止录音并处理（转录模式）"""
+        """Stop recording and process (transcription mode)"""
         audio = self.audio_recorder.stop_recording()
         if audio == "TOO_SHORT":
-            logger.warning("录音时长太短，状态将重置")
+            logger.warning("Recording is too short, state will be reset")
             self.keyboard_manager.reset_state()
         elif audio:
             result = self.audio_processor.process_audio(
@@ -53,22 +53,22 @@ class VoiceAssistant:
                 mode="transcriptions",
                 prompt=""
             )
-            # 解构返回值
+            # Unpack return value
             text, error = result if isinstance(result, tuple) else (result, None)
             self.keyboard_manager.type_text(text, error)
         else:
-            logger.error("没有录音数据，状态将重置")
+            logger.error("No audio data, state will be reset")
             self.keyboard_manager.reset_state()
     
     def start_translation_recording(self):
-        """开始录音（翻译模式）"""
+        """Start recording (translation mode)"""
         self.audio_recorder.start_recording()
     
     def stop_translation_recording(self):
-        """停止录音并处理（翻译模式）"""
+        """Stop recording and process (translation mode)"""
         audio = self.audio_recorder.stop_recording()
         if audio == "TOO_SHORT":
-            logger.warning("录音时长太短，状态将重置")
+            logger.warning("Recording is too short, state will be reset")
             self.keyboard_manager.reset_state()
         elif audio:
             result = self.audio_processor.process_audio(
@@ -79,27 +79,27 @@ class VoiceAssistant:
             text, error = result if isinstance(result, tuple) else (result, None)
             self.keyboard_manager.type_text(text,error)
         else:
-            logger.error("没有录音数据，状态将重置")
+            logger.error("No audio data, state will be reset")
             self.keyboard_manager.reset_state()
 
     def reset_state(self):
-        """重置状态"""
+        """Reset state"""
         self.keyboard_manager.reset_state()
     
     def run(self):
-        """运行语音助手"""
-        logger.info("=== 语音助手已启动 ===")
+        """Run voice assistant"""
+        logger.info("=== Voice Assistant Started ===")
         self.keyboard_manager.start_listening()
 
 def main():
-    # 判断是 Whisper 还是 SiliconFlow
+    # Determine whether to use Whisper or SiliconFlow
     service_platform = os.getenv("SERVICE_PLATFORM", "siliconflow")
     if service_platform == "groq":
         audio_processor = WhisperProcessor()
     elif service_platform == "siliconflow":
         audio_processor = SenseVoiceSmallProcessor()
     else:
-        raise ValueError(f"无效的服务平台: {service_platform}")
+        raise ValueError(f"Invalid service platform: {service_platform}")
     try:
         assistant = VoiceAssistant(audio_processor)
         assistant.run()
@@ -108,11 +108,11 @@ def main():
         if "Input event monitoring will not be possible" in error_msg:
             check_accessibility_permissions()
             sys.exit(1)
-        elif "无法访问音频设备" in error_msg:
+        elif "Unable to access audio device" in error_msg:
             check_microphone_permissions()
             sys.exit(1)
         else:
-            logger.error(f"发生错误: {error_msg}", exc_info=True)
+            logger.error(f"Error occurred: {error_msg}", exc_info=True)
             sys.exit(1)
 
 if __name__ == "__main__":
