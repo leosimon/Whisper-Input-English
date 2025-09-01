@@ -17,7 +17,7 @@ class SymbolProcessor:
         Please add appropriate punctuation to the user’s input and return it. Apart from this, do not add or modify anything else. Do not translate the user's input. Do not add any explanation. Do not answer the user's question and so on. Just output the user's input with punctuation!
         """
         try:
-            logger.info(f"正在添加标点符号...")
+            logger.info(f"Adding punctuation symbols...")
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=[

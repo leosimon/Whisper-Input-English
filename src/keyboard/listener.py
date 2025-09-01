@@ -49,26 +49,26 @@ class KeyboardManager:
             logger.info("配置到Windows平台")
         else:
             self.sysetem_platform = Key.cmd
-            logger.info("配置到Mac平台")
+            logger.info("Configured for Mac platform")
         
 
         # 获取转录和翻译按钮
         transcriptions_button = os.getenv("TRANSCRIPTIONS_BUTTON")
         try:
             self.transcriptions_button = Key[transcriptions_button]
-            logger.info(f"配置到转录按钮：{transcriptions_button}")
+            logger.info(f"Configured transcription button: {transcriptions_button}")
         except KeyError:
-            logger.error(f"无效的转录按钮配置：{transcriptions_button}")
+            logger.error(f"Invalid transcription button configuration: {transcriptions_button}")
 
         translations_button = os.getenv("TRANSLATIONS_BUTTON")
         try:
             self.translations_button = Key[translations_button]
-            logger.info(f"配置到翻译按钮(与转录按钮组合)：{translations_button}")
+            logger.info(f"Configured translation button (combined with transcription button): {translations_button}")
         except KeyError:
-            logger.error(f"无效的翻译按钮配置：{translations_button}")
+            logger.error(f"Invalid translation button configuration: {translations_button}")
 
-        logger.info(f"按住 {transcriptions_button} 键：实时语音转录（保持原文）")
-        logger.info(f"按住 {translations_button} + {transcriptions_button} 键：实时语音翻译（翻译成英文）")
+        logger.info(f"Hold {transcriptions_button} key: Real-time speech transcription (keep original text)")
+        logger.info(f"Hold {translations_button} + {transcriptions_button} key: Real-time speech translation (translate to English)")
     
     @property
     def state(self):
@@ -87,14 +87,14 @@ class KeyboardManager:
             # 根据状态转换类型显示不同消息
             match new_state:
                 case InputState.RECORDING :
-                    # 录音状态
+                    # Recording state
                     self.temp_text_length = 0
                     self.type_temp_text(message)
                     self.on_record_start()
                     
                 
                 case InputState.RECORDING_TRANSLATE:
-                    # 翻译,录音状态
+                    # Translation and recording state
                     self.temp_text_length = 0
                     self.type_temp_text(message)
                     self.on_translate_start()
@@ -106,14 +106,14 @@ class KeyboardManager:
                     self.on_record_stop()
 
                 case InputState.TRANSLATING:
-                    # 翻译状态
+                    # Translation state
                     self._delete_previous_text()                 
                     self.type_temp_text(message)
                     self.processing_text = message
                     self.on_translate_stop()
                 
                 case InputState.WARNING:
-                    # 警告状态
+                    # Warning state
                     message = message(self.warning_message)
                     self._delete_previous_text()
                     self.type_temp_text(message)
@@ -121,7 +121,7 @@ class KeyboardManager:
                     self._schedule_message_clear()     
                 
                 case InputState.ERROR:
-                    # 错误状态
+                    # Error state
                     message = message(self.error_message)
                     self._delete_previous_text()
                     self.type_temp_text(message)
@@ -129,29 +129,29 @@ class KeyboardManager:
                     self._schedule_message_clear()  
             
                 case InputState.IDLE:
-                    # 空闲状态，清除所有临时文本
+                    # Idle state, clear all temporary text
                     self.processing_text = None
                 
                 case _:
-                    # 其他状态
+                    # Other states
                     self.type_temp_text(message)
     
     def _schedule_message_clear(self):
-        """计划清除消息"""
+        """Schedule message clearing"""
         def clear_message():
-            time.sleep(2)  # 警告消息显示2秒
+            time.sleep(2)  # Warning message displays for 2 seconds
             self.state = InputState.IDLE
         
         import threading
         threading.Thread(target=clear_message, daemon=True).start()
     
     def show_warning(self, warning_message):
-        """显示警告消息"""
+        """Show warning message"""
         self.warning_message = warning_message
         self.state = InputState.WARNING
     
     def show_error(self, error_message):
-        """显示错误消息"""
+        """Show error message"""
         self.error_message = error_message
         self.state = InputState.ERROR
     
@@ -182,13 +182,13 @@ class KeyboardManager:
             return
             
         if not text:
-            # 如果没有文本且不是错误，可能是录音时长不足
+            # If no text and no error, it might be insufficient recording duration
             if self.state in (InputState.PROCESSING, InputState.TRANSLATING):
-                self.show_warning("录音时长过短，请至少录制1秒")
+                self.show_warning("Recording duration too short, please record for at least 1 second")
             return
             
         try:
-            logger.info("正在输入转录文本...")
+            logger.info("Inputting transcription text...")
             self._delete_previous_text()
             
             # 先输入文本和完成标记
@@ -208,16 +208,16 @@ class KeyboardManager:
                 # 恢复原始剪贴板内容
                 self._restore_clipboard()
             
-            logger.info("文本输入完成")
+            logger.info("Text input completed")
             
             # 清理处理状态
             self.state = InputState.IDLE
         except Exception as e:
-            logger.error(f"文本输入失败: {e}")
-            self.show_error(f"❌ 文本输入失败: {e}")
+            logger.error(f"Text input failed: {e}")
+            self.show_error(f"❌ Text input failed: {e}")
     
     def _delete_previous_text(self):
-        """删除之前输入的临时文本"""
+        """Delete previously entered temporary text"""
         if self.temp_text_length > 0:
             for _ in range(self.temp_text_length):
                 self.keyboard.press(Key.backspace)
@@ -226,23 +226,23 @@ class KeyboardManager:
         self.temp_text_length = 0
     
     def type_temp_text(self, text):
-        """输入临时状态文本"""
+        """Input temporary status text"""
         if not text:
             return
             
-        # 将文本复制到剪贴板
+        # Copy text to clipboard
         pyperclip.copy(text)
 
-        # 模拟 Ctrl + V 粘贴文本
+        # Simulate Ctrl + V to paste text
         with self.keyboard.pressed(self.sysetem_platform):
             self.keyboard.press('v')
             self.keyboard.release('v')
 
-        # 更新临时文本长度
+        # Update temporary text length
         self.temp_text_length = len(text)
     
     def start_duration_check(self):
-        """开始检查按键持续时间"""
+        """Start checking key press duration"""
         if self.is_checking_duration:
             return
 
@@ -253,7 +253,7 @@ class KeyboardManager:
                     self.option_press_time and 
                     (current_time - self.option_press_time) >= self.PRESS_DURATION_THRESHOLD):
                     
-                    # 达到阈值时触发相应功能
+                    # Trigger corresponding function when threshold is reached
                     if self.option_pressed and self.shift_pressed and self.state.can_start_recording:
                         self.state = InputState.RECORDING_TRANSLATE
                         # self.on_translate_start()
@@ -263,17 +263,17 @@ class KeyboardManager:
                         # self.on_record_start()
                         self.has_triggered = True
                 
-                time.sleep(0.01)  # 短暂休眠以降低 CPU 使用率
+                time.sleep(0.01)  # Brief sleep to reduce CPU usage
 
         self.is_checking_duration = True
         import threading
         threading.Thread(target=check_duration, daemon=True).start()
 
     def on_press(self, key):
-        """按键按下时的回调"""
+        """Callback when key is pressed"""
         try:
-            if key == self.transcriptions_button: #Key.f8:  # Option 键按下
-                # 在开始任何操作前保存剪贴板内容
+            if key == self.transcriptions_button: #Key.f8:  # Option key pressed
+                # Save clipboard content before starting any operation
                 if self._original_clipboard is None:
                     self._original_clipboard = pyperclip.paste()
                     
@@ -333,7 +333,7 @@ class KeyboardManager:
         self.error_message = None
         self.warning_message = None
         
-        # 设置为空闲状态
+        # Set to idle state
         self.state = InputState.IDLE
 
 def check_accessibility_permissions():
