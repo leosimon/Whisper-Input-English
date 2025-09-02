@@ -30,29 +30,29 @@ class KeyboardManager:
         self.on_reset_state = on_reset_state
 
         
-        # 状态管理
+        # State management
         self._state = InputState.IDLE
         self._state_messages = {
             InputState.IDLE: "",
-            InputState.RECORDING: "🎤 正在录音...",
-            InputState.RECORDING_TRANSLATE: "🎤 正在录音 (翻译模式)",
-            InputState.PROCESSING: "🔄 正在转录...",
-            InputState.TRANSLATING: "🔄 正在翻译...",
-            InputState.ERROR: lambda msg: f"{msg}",  # 错误消息使用函数动态生成
-            InputState.WARNING: lambda msg: f"⚠️ {msg}"  # 警告消息使用函数动态生成
+            InputState.RECORDING: "🎤 Recording...",
+            InputState.RECORDING_TRANSLATE: "🎤 Recording (Translation Mode)",
+            InputState.PROCESSING: "🔄 Transcribing...",
+            InputState.TRANSLATING: "🔄 Translating...",
+            InputState.ERROR: lambda msg: f"{msg}",  # Error messages use function to generate dynamically
+            InputState.WARNING: lambda msg: f"⚠️ {msg}"  # Warning messages use function to generate dynamically
         }
 
-        # 获取系统平台
+        # Get system platform
         sysetem_platform = os.getenv("SYSTEM_PLATFORM")
         if sysetem_platform == "win" :
             self.sysetem_platform = Key.ctrl
-            logger.info("配置到Windows平台")
+            logger.info("Configured for Windows platform")
         else:
             self.sysetem_platform = Key.cmd
             logger.info("Configured for Mac platform")
         
 
-        # 获取转录和翻译按钮
+        # Get transcription and translation buttons
         transcriptions_button = os.getenv("TRANSCRIPTIONS_BUTTON")
         try:
             self.transcriptions_button = Key[transcriptions_button]
@@ -72,19 +72,19 @@ class KeyboardManager:
     
     @property
     def state(self):
-        """获取当前状态"""
+        """Get current state"""
         return self._state
     
     @state.setter
     def state(self, new_state):
-        """设置新状态并更新UI"""
+        """Set new state and update UI"""
         if new_state != self._state:
             self._state = new_state
             
-            # 获取状态消息
+            # Get state message
             message = self._state_messages[new_state]
             
-            # 根据状态转换类型显示不同消息
+            # Display different messages based on state transition type
             match new_state:
                 case InputState.RECORDING :
                     # Recording state
@@ -161,7 +161,7 @@ class KeyboardManager:
             self._original_clipboard = pyperclip.paste()
 
     def _restore_clipboard(self):
-        """恢复原始剪贴板内容"""
+        """Restore original clipboard content"""
         if self._original_clipboard is not None:
             pyperclip.copy(self._original_clipboard)
             self._original_clipboard = None
@@ -191,26 +191,26 @@ class KeyboardManager:
             logger.info("Inputting transcription text...")
             self._delete_previous_text()
             
-            # 先输入文本和完成标记
+            # First input text and completion mark
             self.type_temp_text(text+" ✅")
             
-            # 等待一小段时间确保文本已输入
+            # Wait a short time to ensure text is input
             time.sleep(0.5)
             
-            # 删除完成标记（2个字符：空格和✅）
+            # Delete completion mark (2 characters: space and ✅)
             self.temp_text_length = 2
             self._delete_previous_text()
             
-            # 将转录结果复制到剪贴板
+            # Copy transcription result to clipboard
             if os.getenv("KEEP_ORIGINAL_CLIPBOARD", "true").lower() != "true":
                 pyperclip.copy(text)
             else:
-                # 恢复原始剪贴板内容
+                # Restore original clipboard content
                 self._restore_clipboard()
             
             logger.info("Text input completed")
             
-            # 清理处理状态
+            # Clear processing state
             self.state = InputState.IDLE
         except Exception as e:
             logger.error(f"Text input failed: {e}")

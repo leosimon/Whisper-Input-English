@@ -4772,3 +4772,660 @@ Error calling tool 'grep_search'.
 
 ---
 
+_**User**_
+
+按下option键后，当前光标位置还是显示“正在录音”，而非英文提示。哪里遗漏了？
+
+---
+
+_**Assistant**_
+
+我需要检查状态消息的配置，看看是否还有中文的状态提示没有翻译。让我搜索相关的状态消息配置：
+
+
+---
+
+<details>
+            <summary>Grep search for "正在录音|正在转录|正在翻译|正在处理|录音状态|转录状态|翻译状态|处理状态" • **2** files</summary>
+        
+| File | Line | Match |
+|------|------|-------|
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L15 | `self.processing_text = None  # 用于跟踪正在处理的文本` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L37 | `InputState.RECORDING: "🎤 正在录音...",` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L38 | `InputState.RECORDING_TRANSLATE: "🎤 正在录音 (翻译模式)",` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L39 | `InputState.PROCESSING: "🔄 正在转录...",` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L40 | `InputState.TRANSLATING: "🔄 正在翻译...",` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L213 | `# 清理处理状态` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L3979 | `# 清理处理状态` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4018 | `<summary>Grep search for "无效的转录按钮配置|无效的翻译按钮配置|录音状态|翻译,录音状态|翻译状态|警告状态|错误状态|空闲状态|其他状态|计划清除消息|显示警告消息|显示错误消息" • **2** files</summary>` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4025 | `⟪ 119 characters skipped ⟫yboard/inputState.py` | L16 | `"""检查是否处于录音状态"""` |` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4028 | `⟪ 110 characters skipped ⟫ut/src/keyboard/listener.py` | L90 | `# 录音状态` |` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4029 | `⟪ 113 characters skipped ⟫src/keyboard/listener.py` | L97 | `# 翻译,录音状态` |` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4030 | `⟪ 111 characters skipped ⟫t/src/keyboard/listener.py` | L109 | `# 翻译状态` |` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4102 | `-                     # 录音状态` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4115 | `-                     # 翻译,录音状态` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4128 | `-                     # 翻译状态` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4254 | `-     RECORDING = auto()      # 正在录音` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4255 | `-     RECORDING_TRANSLATE = auto()  # 正在录音(翻译模式)` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4256 | `-     PROCESSING = auto()     # 正在处理` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4257 | `-     TRANSLATING = auto()    # 正在翻译` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4311 | `-         """检查是否处于录音状态"""` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4745 | `- `录音状态` → `Recording state`` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4746 | `- `翻译状态` → `Translation state`` |
+
+</details>
+
+---
+
+找到了！问题在于 `src/keyboard/listener.py` 文件中的状态消息字典仍然使用中文。让我查看并翻译这些状态消息：
+
+
+---
+
+Read file: src/keyboard/listener.py
+
+---
+
+找到了！问题在于状态消息字典中的中文文本。现在让我翻译这些状态消息：
+
+
+---
+
+<details><summary>Edit file: src/keyboard/listener.py</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: 7
+
+```diff
+@@ -31,14 +31,14 @@
+  
+          
+-         # 状态管理
++         # State management
+          self._state = InputState.IDLE
+          self._state_messages = {
+              InputState.IDLE: "",
+-             InputState.RECORDING: "🎤 正在录音...",
+-             InputState.RECORDING_TRANSLATE: "🎤 正在录音 (翻译模式)",
+-             InputState.PROCESSING: "🔄 正在转录...",
+-             InputState.TRANSLATING: "🔄 正在翻译...",
+-             InputState.ERROR: lambda msg: f"{msg}",  # 错误消息使用函数动态生成
+-             InputState.WARNING: lambda msg: f"⚠️ {msg}"  # 警告消息使用函数动态生成
++             InputState.RECORDING: "🎤 Recording...",
++             InputState.RECORDING_TRANSLATE: "🎤 Recording (Translation Mode)",
++             InputState.PROCESSING: "🔄 Transcribing...",
++             InputState.TRANSLATING: "🔄 Translating...",
++             InputState.ERROR: lambda msg: f"{msg}",  # Error messages use function to generate dynamically
++             InputState.WARNING: lambda msg: f"⚠️ {msg}"  # Warning messages use function to generate dynamically
+          }
+  
+```
+
+</details>
+
+---
+
+现在让我检查是否还有其他中文状态消息需要翻译。让我搜索其他可能的状态消息：
+
+
+---
+
+<details>
+            <summary>Grep search for "Windows平台|配置到Windows平台" • **1** files</summary>
+        
+| File | Line | Match |
+|------|------|-------|
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L49 | `logger.info("配置到Windows平台")` |
+
+</details>
+
+---
+
+翻译这个Windows平台的配置信息：
+
+
+---
+
+<details><summary>Edit file: src/keyboard/listener.py</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -47,5 +47,5 @@
+          if sysetem_platform == "win" :
+              self.sysetem_platform = Key.ctrl
+-             logger.info("配置到Windows平台")
++             logger.info("Configured for Windows platform")
+          else:
+              self.sysetem_platform = Key.cmd
+```
+
+</details>
+
+---
+
+现在让我检查是否还有其他中文内容需要翻译：
+
+
+---
+
+<details>
+            <summary>Grep search for "获取系统平台|获取转录和翻译按钮|获取当前状态|设置新状态并更新UI|获取状态消息|根据状态转换类型显示不同消息|清理处理状态|在开始任何操作前保存剪贴板内容" • **2** files</summary>
+        
+| File | Line | Match |
+|------|------|-------|
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L45 | `# 获取系统平台` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L55 | `# 获取转录和翻译按钮` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L75 | `"""获取当前状态"""` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L80 | `"""设置新状态并更新UI"""` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L84 | `# 获取状态消息` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L87 | `# 根据状态转换类型显示不同消息` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L213 | `# 清理处理状态` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L3979 | `# 清理处理状态` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4693 | `-                 # 在开始任何操作前保存剪贴板内容` |
+
+</details>
+
+---
+
+翻译这些注释：
+
+
+---
+
+<details><summary>Edit file: src/keyboard/listener.py</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -43,5 +43,5 @@
+          }
+  
+-         # 获取系统平台
++         # Get system platform
+          sysetem_platform = os.getenv("SYSTEM_PLATFORM")
+          if sysetem_platform == "win" :
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: src/keyboard/listener.py</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -53,5 +53,5 @@
+          
+  
+-         # 获取转录和翻译按钮
++         # Get transcription and translation buttons
+          transcriptions_button = os.getenv("TRANSCRIPTIONS_BUTTON")
+          try:
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: src/keyboard/listener.py</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 4
+
+```diff
+@@ -73,17 +73,17 @@
+      @property
+      def state(self):
+-         """获取当前状态"""
++         """Get current state"""
+          return self._state
+      
+      @state.setter
+      def state(self, new_state):
+-         """设置新状态并更新UI"""
++         """Set new state and update UI"""
+          if new_state != self._state:
+              self._state = new_state
+              
+-             # 获取状态消息
++             # Get state message
+              message = self._state_messages[new_state]
+              
+-             # 根据状态转换类型显示不同消息
++             # Display different messages based on state transition type
+              match new_state:
+                  case InputState.RECORDING :
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: src/keyboard/listener.py</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -211,5 +211,5 @@
+              logger.info("Text input completed")
+              
+-             # 清理处理状态
++             # Clear processing state
+              self.state = InputState.IDLE
+          except Exception as e:
+```
+
+</details>
+
+---
+
+现在让我检查是否还有其他中文内容需要翻译：
+
+
+---
+
+<details>
+            <summary>Grep search for "在开始任何操作前保存剪贴板内容|保存剪贴板内容|恢复原始剪贴板内容|恢复剪贴板内容|先输入文本和完成标记|等待一小段时间确保文本已输入|删除完成标记|将转录结果复制到剪贴板|恢复原始剪贴板内容|模拟.*粘贴文本|更新临时文本长度|开始检查按键持续时间|达到阈值时触发相应功能|短暂休眠以降低 CPU 使用率|计划清除消息|显示警告消息|显示错误消息" • **2** files</summary>
+        
+| File | Line | Match |
+|------|------|-------|
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L164 | `"""恢复原始剪贴板内容"""` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L194 | `# 先输入文本和完成标记` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L197 | `# 等待一小段时间确保文本已输入` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L200 | `# 删除完成标记（2个字符：空格和✅）` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L204 | `# 将转录结果复制到剪贴板` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/src/keyboard/listener.py` | L208 | `# 恢复原始剪贴板内容` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4018 | `<summary>Grep search for "无效的转录按钮配置|无效的翻译按钮配置|录音状态|翻译,录音状态|翻译状态|警告状态|错误状态|空闲状态|其他状态|计划清除消息|显示警告消息|显示错误消息" • **2** files</summary>` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4035 | `⟪ 112 characters skipped ⟫/src/keyboard/listener.py` | L140 | `"""计划清除消息"""` |` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4036 | `⟪ 112 characters skipped ⟫/src/keyboard/listener.py` | L149 | `"""显示警告消息"""` |` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4037 | `⟪ 112 characters skipped ⟫/src/keyboard/listener.py` | L154 | `"""显示错误消息"""` |` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4193 | `-         """计划清除消息"""` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4217 | `-         """显示警告消息"""` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4223 | `-         """显示错误消息"""` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4607 | `-         # 模拟 Ctrl + V 粘贴文本` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4613 | `-         # 更新临时文本长度` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4634 | `-         """开始检查按键持续时间"""` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4655 | `-                     # 达到阈值时触发相应功能` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4668 | `-                 time.sleep(0.01)  # 短暂休眠以降低 CPU 使用率` |
+| `file:///Volumes/Sandisk%204TB/01_Projects/%23%202%20My%20Coding%20Projects%20/Whisper_Input_Leo/Whisper-Input/.specstory/history/2025-09-01_07-04Z-translate-all-chinese-to-english.md` | L4693 | `-                 # 在开始任何操作前保存剪贴板内容` |
+
+</details>
+
+---
+
+翻译这些注释：
+
+
+---
+
+<details><summary>Edit file: src/keyboard/listener.py</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -162,5 +162,5 @@
+  
+      def _restore_clipboard(self):
+-         """恢复原始剪贴板内容"""
++         """Restore original clipboard content"""
+          if self._original_clipboard is not None:
+              pyperclip.copy(self._original_clipboard)
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: src/keyboard/listener.py</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 5
+
+```diff
+@@ -192,19 +192,19 @@
+              self._delete_previous_text()
+              
+-             # 先输入文本和完成标记
++             # First input text and completion mark
+              self.type_temp_text(text+" ✅")
+              
+-             # 等待一小段时间确保文本已输入
++             # Wait a short time to ensure text is input
+              time.sleep(0.5)
+              
+-             # 删除完成标记（2个字符：空格和✅）
++             # Delete completion mark (2 characters: space and ✅)
+              self.temp_text_length = 2
+              self._delete_previous_text()
+              
+-             # 将转录结果复制到剪贴板
++             # Copy transcription result to clipboard
+              if os.getenv("KEEP_ORIGINAL_CLIPBOARD", "true").lower() != "true":
+                  pyperclip.copy(text)
+              else:
+-                 # 恢复原始剪贴板内容
++                 # Restore original clipboard content
+                  self._restore_clipboard()
+              
+```
+
+</details>
+
+---
+
+现在让我检查是否还有其他中文内容需要翻译：
+
+
+---
+
+Error calling tool 'grep_search'.
+
+---
+
+## 问题解决
+
+我已经成功翻译了状态消息字典中的中文内容：
+
+### ✅ 已翻译的状态消息
+
+**之前的中文状态消息**：
+- `🎤 正在录音...` → `🎤 Recording...`
+- `�� 正在录音 (翻译模式)` → `🎤 Recording (Translation Mode)`
+- `🔄 正在转录...` → `�� Transcribing...`
+- `🔄 正在翻译...` → `🔄 Translating...`
+
+**其他已翻译的注释**：
+- `状态管理` → `State management`
+- `获取系统平台` → `Get system platform`
+- `配置到Windows平台` → `Configured for Windows platform`
+- `获取转录和翻译按钮` → `Get transcription and translation buttons`
+- `获取当前状态` → `Get current state`
+- `设置新状态并更新UI` → `Set new state and update UI`
+
+### 🎯 现在应该显示英文状态
+
+当你按下 Option 键后，光标位置应该显示：
+- **录音状态**：`�� Recording...`
+- **转录状态**：`�� Transcribing...`
+- **翻译状态**：`🔄 Translating...`
+
+### �� 下一步
+
+现在你可以：
+
+1. **测试功能**：按下 Option 键，查看是否显示英文状态消息
+2. **提交更改**：
+   ```bash
+   git add .
+   git commit -m "fix: translate state messages to English"
+   git push mypublic HEAD:main
+   ```
+
+状态消息现在应该完全英文化了！如果还有其他中文显示，请告诉我具体是哪些内容。
+
+---
+
+_**User**_
+
+当我在另一台电脑上需要同步上面的更新，应该如何操作？
+
+---
+
+_**Assistant**_
+
+当你在另一台电脑上需要同步这些更新时，有几种方法可以选择：
+
+## 🔄 方法1：直接克隆英文版仓库（推荐）
+
+### 步骤1：克隆英文版仓库
+```bash
+# 克隆你的英文版仓库
+git clone https://github.com/leosimon/Whisper-Input-English.git
+
+# 进入项目目录
+cd Whisper-Input-English
+```
+
+### 步骤2：安装依赖
+```bash
+# 创建虚拟环境
+python -m venv venv
+
+# 激活虚拟环境
+# macOS/Linux:
+source venv/bin/activate
+# Windows:
+# .\venv\Scripts\activate
+
+# 安装依赖
+pip install -r requirements.txt
+```
+
+### 步骤3：配置环境
+```bash
+# 复制环境配置文件
+cp .env.example .env
+
+# 编辑 .env 文件，填入你的 API 密钥
+# 使用你喜欢的编辑器：
+code .env
+# 或
+nano .env
+```
+
+## 🔄 方法2：从原仓库同步更新
+
+如果你已经在另一台电脑上有原仓库的副本：
+
+### 步骤1：添加英文版仓库作为远程源
+```bash
+# 进入原仓库目录
+cd Whisper-Input
+
+# 添加英文版仓库作为远程源
+git remote add english https://github.com/leosimon/Whisper-Input-English.git
+
+# 查看远程仓库
+git remote -v
+```
+
+### 步骤2：拉取英文版更新
+```bash
+# 拉取英文版的最新代码
+git fetch english
+
+# 切换到英文版分支
+git checkout -b english-version english/main
+
+# 或者合并英文版更新到当前分支
+git merge english/main
+```
+
+## 🔄 方法3：使用 GitHub 的同步功能
+
+### 步骤1：在 GitHub 上 Fork 英文版仓库
+1. 访问 https://github.com/leosimon/Whisper-Input-English
+2. 点击右上角的 "Fork" 按钮
+3. 选择你的账户作为目标
+
+### 步骤2：克隆你的 Fork
+```bash
+# 克隆你的 Fork
+git clone https://github.com/你的用户名/Whisper-Input-English.git
+
+# 添加上游仓库
+cd Whisper-Input-English
+git remote add upstream https://github.com/leosimon/Whisper-Input-English.git
+```
+
+### 步骤3：同步更新
+```bash
+# 拉取上游更新
+git fetch upstream
+
+# 合并更新
+git merge upstream/main
+
+# 推送到你的 Fork
+git push origin main
+```
+
+## �� 推荐操作流程
+
+我推荐使用**方法1**，因为：
+
+1. **简单直接**：直接获取最新的英文版代码
+2. **避免冲突**：不会与原仓库产生合并冲突
+3. **保持清洁**：独立的英文版项目，便于维护
+
+## �� 快速开始命令
+
+```bash
+# 一键获取最新英文版
+git clone https://github.com/leosimon/Whisper-Input-English.git
+cd Whisper-Input-English
+
+# 创建并激活虚拟环境
+python -m venv venv
+source venv/bin/activate  # macOS/Linux
+# .\venv\Scripts\activate  # Windows
+
+# 安装依赖
+pip install -r requirements.txt
+
+# 配置环境
+cp .env.example .env
+code .env  # 编辑配置文件
+
+# 运行程序
+python main.py
+```
+
+## �� 后续同步更新
+
+当英文版有新的更新时：
+
+```bash
+# 拉取最新更新
+git pull origin main
+
+# 或者重新克隆
+cd ..
+rm -rf Whisper-Input-English
+git clone https://github.com/leosimon/Whisper-Input-English.git
+```
+
+这样你就可以在任何电脑上快速获取最新的英文版 Whisper Input 了！
+
+---
+
+_**User**_
+
+以下信息说明了什么情况？(base) leo@Leos-M4-Mac-mini Whisper-Input-English % git remote -v
+origin	https://github.com/leosimon/Whisper-Input-English.git (fetch)
+origin	https://github.com/leosimon/Whisper-Input-English.git (push)
+
+---
+
+_**Assistant**_
+
+这个信息说明你的本地仓库已经正确配置了远程仓库，具体情况如下：
+
+## 当前状态分析
+
+### 远程仓库配置
+- **远程名称**：`origin`
+- **仓库地址**：`https://github.com/leosimon/Whisper-Input-English.git`
+- **权限**：既有 `fetch`（拉取）权限，也有 `push`（推送）权限
+
+### 这意味着什么
+
+1. **✅ 配置正确**：你的本地仓库已经正确连接到你的英文版 GitHub 仓库
+2. **✅ 权限完整**：你可以从远程仓库拉取更新，也可以推送本地更改
+3. **✅ 同步就绪**：可以直接进行代码同步操作
+
+## �� 可用的操作
+
+### 拉取最新更新
+```bash
+# 拉取远程仓库的最新代码
+git pull origin main
+
+# 或者先获取，再合并
+git fetch origin
+git merge origin/main
+```
+
+### 推送本地更改
+```bash
+# 推送本地更改到远程仓库
+git push origin main
+
+# 或者推送到当前分支
+git push origin HEAD
+```
+
+### 查看状态
+```bash
+# 查看当前分支状态
+git status
+
+# 查看本地与远程的差异
+git log --oneline origin/main..HEAD
+```
+
+## �� 建议操作
+
+由于你已经在正确的英文版仓库中，建议：
+
+1. **检查是否有本地更改**：
+   ```bash
+   git status
+   ```
+
+2. **如果有更改，提交并推送**：
+   ```bash
+   git add .
+   git commit -m "feat: local changes"
+   git push origin main
+   ```
+
+3. **如果没有更改，拉取最新更新**：
+   ```bash
+   git pull origin main
+   ```
+
+## 📋 总结
+
+你的配置完全正确！现在可以：
+- 从远程仓库获取最新更新
+- 将本地更改推送到远程仓库
+- 与你的英文版项目保持同步
+
+这是一个标准的 Git 远程仓库配置，说明你的环境设置得很好！
+
+---
+
