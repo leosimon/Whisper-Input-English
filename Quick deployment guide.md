@@ -60,10 +60,14 @@ GROQ_API_KEY=gsk_your_actual_api_key_here
 
 2. **Automator Script Content**
 
-```bash
-cd "/path/to/your/Whisper-Input-English"
-./start.sh
-```
+   #!/bin/bash
+   
+   cd "/Users/leo/Whisper-Input-English"
+   
+   osascript -e 'tell application "Terminal"
+       activate
+       do script "cd \"/Users/leo/Whisper-Input-English\" && ./start.sh"
+   end tell'
 
 ## 🎮 Usage Instructions
 
